@@ -12,19 +12,19 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_books')
 def get_books():
-    return render_template("get_books.html", books=mongo.db.books.find())
+    return render_template("books.html", books=mongo.db.books.find())
     
-@app.route('/')
-@app.route('/add_book')
-def add_book():
-    return render_template('edit_books.html', categories=mongo.db.books.find())
+# @app.route('/')
+# @app.route('/add_book')
+# def add_book():
+#     return render_template('edit_books.html', categories=mongo.db.books.find())
 
-@app.route('/')
-@app.route('/insert_book', methods=['POST'])
-def insert_task():
-    tasks = mongo.db.books
-    tasks.insert_one(request.form.to_dict())
-    return redirect(url_for('get_books'))
+# @app.route('/')
+# @app.route('/insert_book', methods=['POST'])
+# def insert_task():
+#     tasks = mongo.db.books
+#     tasks.insert_one(request.form.to_dict())
+#     return redirect(url_for('get_books'))
 
 
 if __name__ == '__main__':
