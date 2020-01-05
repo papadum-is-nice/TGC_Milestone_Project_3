@@ -28,15 +28,15 @@ def add_book():
 def insert_book():
     book = mongo.db.books
     new_book = {
-        'title': request.form.get('title'),
-        'authors':request.form.get('authors'),
-        'rating':request.form.get('rating'),
-        'language_code':request.form.get('language_code'),
-        'isbn13':int(request.form.get('isbn13')),
-        'num_pages':int(request.form.get('num_pages'))
+        'Brand': request.form.get('Brand'),
+        'Flavour':request.form.get('Flavour'),
+        'Style': request.form.get('Style'),
+        'Country':request.form.get('Country'),
+        'Stars':int(request.form.get('Stars')),
+        'Ratings':request.form.get('Ratings')
     }
-    book.insert_one(new_book)
-    return redirect(url_for('index'))    
+    ramens.insert_one(new_ramen)
+    return redirect(url_for('get_ramen'))    
     
 @app.route('/edit_book/<book_id>', methods=['GET'])
 def edit_book(book_id):

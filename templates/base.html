@@ -28,7 +28,7 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="{{url_for('index')}}">Home</a></li>
-          <li><a href="">Add Book</a></li>
+          <li><a href="{{url_for('add_book')}}">Add Book</a></li>
           <li><a href="{{url_for('get_books')}}">Books Collection</a></li>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Books<i class="material-icons right">arrow_drop_down</i></a>
             <ul id="dropdown1" class="dropdown-content">
@@ -41,7 +41,7 @@
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><a href="{{url_for('index')}}">Home</a></li>
-          <li><a href="">Add Book</a></li>
+          <li><a href="{{url_for('add_book')}}">Add Book</a></li>
           <li><a href="{{url_for('get_books')}}">Books Collection</a></li>
           <li><a href="">Ramen from Asia</a></li>
           <li><a href="">Ramen from The Americas</a></li>
@@ -53,8 +53,8 @@
   </header>
 
   {% block content %} {% endblock %}
-    <div class="container-fluid">
-  <footer class="page-footer">
+  <div class="container-fluid">
+    <footer class="page-footer">
       <div class="row">
         <div class="col s12 m6 footer-logo">
           <div class="website-info">
@@ -63,7 +63,7 @@
           </div>
           <p>This website is for instant ramen lovers who wish to view different kinds of ramen from all over the world. Also, new ramens could be added to the list for everyone to enjoy.</p>
         </div>
-        
+
         <div class="col s12 m6 footer-social">
           <p>Keep In Touch</p>
           <span><a href="https://github.com/Paddlepop25" target="_blank" class="white-text"><i class="fab fa-github fa-2x"></i></a></span>
@@ -74,8 +74,8 @@
           <small>For educational purpose</small>
         </div>
       </div>
-  </footer>
-    </div>
+    </footer>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
