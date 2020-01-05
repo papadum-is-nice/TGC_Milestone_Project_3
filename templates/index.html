@@ -2,4 +2,26 @@
 
 <h1>index</h1>
 
+ <div class="row welcome-page">
+      <div class="col s12 welcome-box">
+        <div class="row">
+          <h4>Welcome to InstaRamen!</h1>
+        </div>
+        <div class="row">
+          <form class="col s12" action="{{ url_for('search_books') }}">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="search" name="query" type="text" class="validate">
+                <label for="search">Search for Any Book by Title or Author</label>
+                <div class="search-button">
+                  <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Search</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </div>
+
 {% endblock %}
