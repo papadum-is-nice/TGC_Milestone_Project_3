@@ -1,3 +1,18 @@
+{% extends 'base.html'%} {% block content %}
+
+ {% for books in books %}
+    {{ books.isbn }}
+    {{ books.title }}
+    {{ books.author }}
+    {{ books.ratings_count}}
+    {% endfor %}
+
+{% endblock %}
+
+
+
+------------
+
 {% extends 'base.html'%} 
 {% block content %}
 
