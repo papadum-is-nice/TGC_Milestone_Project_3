@@ -3,6 +3,11 @@ body {
   background-size: cover;
 }
 
+.book_logo  {
+ max-height: 65px;
+ max-width: 65px;
+}
+
 h1, h4{
     text-align: center;
     color: white;
