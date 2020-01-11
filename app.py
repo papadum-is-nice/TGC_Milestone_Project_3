@@ -31,7 +31,7 @@ def search_books():
     
 @app.route('/get_books')
 def get_books():
-    books=mongo.db.books.find()
+    books=mongo.db.books.find().limit(10)
     return render_template('books_collection.html', title="Books Collection", books=books)
     
 @app.route('/add_book')
