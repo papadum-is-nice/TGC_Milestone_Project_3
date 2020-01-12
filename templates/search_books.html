@@ -1,6 +1,7 @@
 {% extends 'base.html'%} {% block content %}
 
-<h1>Search Books</h1>
+<h1>Search Results</h1>
+{% if search_books|length > 0 %}
 <div class="row">
     {% for book in search_books %}
     <div class="container">
@@ -28,5 +29,15 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+        <div class="container no-result">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="white-text">Oops!</br> No results found!</h3>
+            </div>
+        </div>
+    </div>
+{% endif %} 
 </div>
+
 {% endblock %}
