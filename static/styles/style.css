@@ -25,7 +25,14 @@ h1, h4{
 }
 
 .container {
- background-color: rgba(255, 255, 255,);  
+ background-color: rgba(255, 255, 255, 0.1);  
  backdrop-filter: blur(6px);
  border-radius: 30px
+}
+
+@media(min-width:320px) and (max-width:767px) {
+    h1 {
+        position: relative;
+        font-size: 25px;
+    }
 }
