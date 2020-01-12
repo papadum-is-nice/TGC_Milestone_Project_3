@@ -21,7 +21,7 @@ def search_books():
     print(query)
     results=mongo.db.books.find(
     {'$or':[{'title':query}, {'authors':query}]}
-    )
+    ).limit(4)
     
     book = []
     for result in results:

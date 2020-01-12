@@ -7,22 +7,21 @@
         <div class="col s12 m6 l3">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator cslewis" src="/static/images/cslewis.jpg">
+                    <img class="activator cslewis" src="/static/images/Generic-bookcover.jpg">
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">
-                        <p>Title: {{book.title}}</p>
-                        <p>Author: {{book.authors}}</p>
+                        <p><strong>Title:</strong> {{book.title}}</p>
+                        <p><strong>Author:</strong> {{book.authors}}</p>
                         <i class="material-icons right">more_vert</i></span>
                     <p><a href="{{url_for('edit_book', book_id=book._id)}}">Edit</a></p>
-                    <p><a href="{{url_for('delete_book', book_id=book._id)}}">Delete</a></p>
+                    <p><a href="{{url_for('delete_book', book_id=book._id)}}" class="red-text">Delete</a></p>
                 </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    <p>Rating: {{book.rating}}</p>
-                    <p>Language: {{book.language_code}}</p>
-                    <p>No. of Pages: {{book.num_pages}}</p>
+                    <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                    <p><strong>Rating:</strong> {{book.rating}}</p>
+                    <p><strong>Language:</strong> {{book.language_code|upper}}</p>
+                    <p><strong>No. of Pages:</strong> {{book.num_pages}}</p>
                 </div>
             </div>
         </div>
