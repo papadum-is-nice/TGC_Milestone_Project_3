@@ -5,8 +5,9 @@ from bson.objectid import ObjectId
 import re
 
 app = Flask(__name__)
+
 app.config["MONGO_DBNAME"] = 'goodreads'
-app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@cluster0-y00j5.mongodb.net/goodreads?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 mongo = PyMongo(app)
 
@@ -44,33 +45,31 @@ def insert_book():
     new_book = {
         'title': request.form.get('title'),
         'authors':request.form.get('authors'),
-        'rating':int(request.form.get('rating')),
         'language_code':request.form.get('language_code'),
-        'isbn13':int(request.form.get('isbn13')),
-        'num_pages':int(request.form.get('num_pages'))
+        'num_pages':int(request.form.get('num_pages')),
+        'isbn13':int(request.form.get('isbn13'))
     }
     book.insert_one(new_book)
     return redirect(url_for('index'))    
-
-@app.route('/update_book/<book_id>', methods=["POST"])
-def update_book(book_id):
-    book = mongo.db.books
-    book.update( {'_id': ObjectId(book_id)},
-    {
-        'title': request.form.get('title'),
-        'authors':request.form.get('authors'),
-        'rating':int(request.form.get('rating')),
-        'language_code':request.form.get('language_code'),
-        'isbn13':int(request.form.get('isbn13')),
-        'num_pages':int(request.form.get('num_pages'))
-    })
-    return redirect(url_for('get_books'))
     
 @app.route('/edit_book/<book_id>', methods=['GET'])
 def edit_book(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     return render_template('edit_book.html', title="Edit book", book=book)
 
+@app.route('/update_book/<book_id>', methods=["POST"])
+def update_book(book_id):
+    book = mongo.db.books.find_one({"_id:": ObjectId(book_id)})
+    book.update( {'_id': ObjectId(book_id)},
+    {
+        'title': request.form.get('title'),
+        'authors':request.form.get('authors'),
+        'language_code':request.form.get('language_code'),
+        'num_pages':int(request.form.get('num_pages')),
+        'isbn13':int(request.form.get('isbn13'))
+    })
+    return redirect(url_for('get_books'))
+    
 @app.route('/delete_book/<book_id>')
 def delete_book(book_id):
     mongo.db.books.remove({'_id': ObjectId(book_id)})
