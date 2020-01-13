@@ -87,10 +87,29 @@ h4 {
 }
 
 /* Search page*/
-.search_books .card {
-    min-height: 1000px;
-    overflow-y: scroll;
+.card .card-content p {
+  font-size: 1.2rem;
 }
+
+.card .card-content {
+  overflow-y: scroll;
+  max-height: 205px;
+}
+
+.result-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 30px;
+    width: 80%;
+    height: 500px;
+    margin: 0 auto;
+    margin-bottom: 15rem;
+}
+
+.result-box h4 {
+    padding-top: 5rem;
+}
+
 /*.no-result {*/
 
 /*    text-align: center;*/
@@ -99,21 +118,6 @@ h4 {
 
 /*}*/
 
-/* Books collection page*/
-
-/*.card .card-content {*/
-
-/*    overflow-y: scroll;*/
-
-/*    min-height: 260px;*/
-
-/*}*/
-
-/*.card-content p {*/
-
-/*    font-size: 1rem;*/
-
-/*}*/
 
 /* Footer */
 
@@ -152,6 +156,11 @@ h4 {
     .page-footer {
         padding-left: 6rem;
     }
+    
+    .result-box {
+    margin-bottom: 24rem;
+}
+
     /*.no-result {*/
     /*    margin-bottom: 20rem;*/
     /*}*/
@@ -163,7 +172,7 @@ h4 {
 @media(min-width:768px) {
     .welcome-form {
         position: relative;
-        top: -3rem;
+        top: -1rem;
     }
     
     .book-suggestion img {

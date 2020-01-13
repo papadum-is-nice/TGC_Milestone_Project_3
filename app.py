@@ -21,7 +21,7 @@ def search_books():
     print(query)
     results=mongo.db.books.find(
     {'$or':[{'title':query}, {'authors':query}]}
-    ).limit(4)
+    ).limit(12)
     
     book = []
     for result in results:
@@ -31,7 +31,7 @@ def search_books():
     
 @app.route('/get_books')
 def get_books():
-    books=mongo.db.books.find().limit(8)
+    books=mongo.db.books.find().limit(12)
     return render_template('books_collection.html', title="Books Collection", books=books)
     
 @app.route('/add_book')
