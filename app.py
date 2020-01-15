@@ -15,20 +15,14 @@ mongo = PyMongo(app)
 def index():
     return render_template('index.html', title="Home")
  
-@app.route('/search_books')
+@app.route('/search_books/', methods=["GET", "POST"])
 def search_books():
-    orig_query = request.args['query']
-    query = {'$regex': re.compile('.*{}.*'.format(orig_query)), '$options': 'i'}
-    print(query)
-    results=mongo.db.books.find(
-    {'$or':[{'title':query}, {'authors':query}]}
-    ).limit(12)
-    
-    book = []
-    for result in results:
-        book.append(result)
-    
-    return render_template('search_books.html', title="Search Results", query=orig_query, search_books=book)
+    post_request = request.args['query']
+    return render_template("search_books.html",
+                            title="Search Results",
+                            query=post_request,
+                            search_books=mongo.db.books.find({"$or":[{"title" : {"$regex": post_request, "$options": "i"}}, {"authors" : {"$regex": post_request, "$options": "i"}}]}).limit(12),
+                            search_books_count=mongo.db.books.find({"title" : {"$regex": post_request, "$options": "i"}}).count())
     
 @app.route('/get_books')
 def get_books():

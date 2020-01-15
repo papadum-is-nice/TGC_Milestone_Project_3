@@ -1,7 +1,7 @@
 {% extends 'base.html'%} {% block content %}
 
 <h1>Search Results</h1>
-{% if search_books|length > 0 %}
+{% if search_books_count > 0 %}
 <div class="row">
     {% for book in search_books %}
     <div class="container search_books">
