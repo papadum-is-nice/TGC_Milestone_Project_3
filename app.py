@@ -41,6 +41,7 @@ def insert_book():
         'authors':request.form.get('authors'),
         'language_code':request.form.get('language_code'),
         'num_pages':int(request.form.get('num_pages')),
+        'rating':int(request.form.get('rating')),
         'isbn13':int(request.form.get('isbn13'))
     }
     book.insert_one(new_book)
@@ -60,6 +61,7 @@ def update_book(book_id):
         'authors':request.form.get('authors'),
         'language_code':request.form.get('language_code'),
         'num_pages':int(request.form.get('num_pages')),
+        'rating':int(request.form.get('rating')),
         'isbn13':int(request.form.get('isbn13'))
     })
     return redirect(url_for('get_books'))
