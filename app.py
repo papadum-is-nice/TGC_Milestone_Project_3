@@ -45,7 +45,7 @@ def insert_book():
         'isbn13':int(request.form.get('isbn13'))
     }
     book.insert_one(new_book)
-    return redirect(url_for('index'))    
+    return redirect(url_for('get_books'))    
     
 @app.route('/edit_book/<book_id>', methods=['GET'])
 def edit_book(book_id):
@@ -55,7 +55,7 @@ def edit_book(book_id):
 @app.route('/update_book/<book_id>', methods=["POST"])
 def update_book(book_id):
     book = mongo.db.books.find_one({"_id:": ObjectId(book_id)})
-    book.update( {'_id': ObjectId(book_id)},
+    mongo.db.books.update( {'_id': ObjectId(book_id)},
     {
         'title': request.form.get('title'),
         'authors':request.form.get('authors'),
