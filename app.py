@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, DESCENDING
 from bson.objectid import ObjectId
 import re
 
@@ -26,7 +26,7 @@ def search_books():
     
 @app.route('/get_books')
 def get_books():
-    books=mongo.db.books.find().limit(12)
+    books=mongo.db.books.find().sort([("_id", DESCENDING)]).limit(12)
     return render_template('books_collection.html', title="Books Collection", books=books)
     
 @app.route('/add_book')

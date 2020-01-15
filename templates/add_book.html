@@ -7,14 +7,14 @@
         <form action="{{ url_for('insert_book')}}" method="POST">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
+                    <i class="material-icons prefix">library_books</i>
                     <input id="title" name="title" type="text" required>
                     <label for="title"><span>* </span>Add Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
+                    <i class="material-icons prefix">person</i>
                     <input id="author" name="authors" type="text" required>
                     <label for="author"><span>* </span>Add Author</label>
                 </div>
@@ -41,11 +41,21 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
+                    <i class="material-icons prefix stars">star</i>
+                    <label class="active" for="rating">* Stars (0-5)</label>
+                    <p class="range-field stars">
+                        <input type="range" id="stars" name="stars" min="0" max="5" required/>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">gesture</i>
                     <input id="isbn13" name="isbn13" type="number" required>
                     <label for="isbn13"><span>* </span>Add ISBN (13 digits)</label>
                 </div>
             </div>
+
 
             <div class="row add-book">
                 <button class="btn waves-effect waves-light orange darken-4" type="submit" name="action">Add Book
@@ -55,6 +65,7 @@
             </div>
 
         </form>
+
     </div>
 </div>
 {% endblock %}
