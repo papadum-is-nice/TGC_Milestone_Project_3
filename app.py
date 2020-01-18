@@ -11,10 +11,12 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 mongo = PyMongo(app)
 
+# Home page
 @app.route('/')
 def index():
     return render_template('index.html', title="Home")
  
+# Search function 
 @app.route('/search_books/', methods=["GET", "POST"])
 def search_books():
     post_request = request.args['query']
@@ -23,16 +25,19 @@ def search_books():
                             query=post_request,
                             search_books=mongo.db.books.find({"$or":[{"title" : {"$regex": post_request, "$options": "i"}}, {"authors" : {"$regex": post_request, "$options": "i"}}]}).limit(12),
                             search_books_count=mongo.db.books.find({"title" : {"$regex": post_request, "$options": "i"}}).count())
-    
+
+# Books collection    
 @app.route('/get_books')
 def get_books():
     books=mongo.db.books.find().sort([("_id", DESCENDING)]).limit(12)
     return render_template('books_collection.html', title="Books Collection", books=books)
-    
+
+# Add book page    
 @app.route('/add_book')
 def add_book():
     return render_template('add_book.html', title="Add book")
 
+# Add book
 @app.route('/insert_book', methods=['POST'])
 def insert_book():
     book = mongo.db.books
@@ -46,12 +51,14 @@ def insert_book():
     }
     book.insert_one(new_book)
     return redirect(url_for('get_books'))    
-    
+
+# Edit book page    
 @app.route('/edit_book/<book_id>', methods=['GET'])
 def edit_book(book_id):
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     return render_template('edit_book.html', title="Edit book", book=book)
 
+# Update book function
 @app.route('/update_book/<book_id>', methods=["POST"])
 def update_book(book_id):
     book = mongo.db.books.find_one({"_id:": ObjectId(book_id)})
@@ -65,7 +72,8 @@ def update_book(book_id):
         'isbn13':int(request.form.get('isbn13'))
     })
     return redirect(url_for('get_books'))
-    
+
+# Delete book function    
 @app.route('/delete_book/<book_id>')
 def delete_book(book_id):
     mongo.db.books.remove({'_id': ObjectId(book_id)})
@@ -74,4 +82,4 @@ def delete_book(book_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)

@@ -42,11 +42,7 @@ h4 {
     text-align: center;
 }
 
-.welcome-search label {
-    text-align: center;
-}
-
-.welcome-search input {
+.welcome-form label,input {
     text-align: center;
 }
 
